@@ -1,0 +1,34 @@
+{
+  "name": "@rbxts/zone-plus",
+  "version": "1.0.0",
+  "description": "A port of ForeverHD's Zone+ module.",
+  "main": "out/init.lua",
+  "scripts": {
+    "prepublishOnly": "rbxtsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanzLua/Zone-TS.git"
+  },
+  "keywords": [
+    "roblox",
+    "roblox-typescript",
+    "roblox-ts"
+  ],
+  "author": "DanzLua",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "out/index.d.ts",
+  "devDependencies": {
+    "@rbxts/types": "^1.0.353"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.0.4"
+  },
+  "files": [
+    "README.md",
+    "out"
+  ]
+}
