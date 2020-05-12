@@ -18,8 +18,7 @@
   "author": "DanzLua",
   "license": "ISC",
   "publishConfig": {
-    "access": "public",
-    "registry":"https://npm.pkg.github.com/"
+    "access": "public"
   },
   "types": "out/index.d.ts",
   "devDependencies": {
