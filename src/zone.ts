@@ -280,7 +280,10 @@ export class Zone{
 		const char = player.Character;
 		const hrp = char && char.FindFirstChild("HumanoidRootPart");
 		if (hrp && hrp.IsA("BasePart")){
-			const charOffset = hrp.Size.Y * -1.4;
+			let charOffset = hrp.Size.Y * -1.4;
+			const hum = char && char.FindFirstChild("Humanoid");
+			if (hum && hum.IsA("Humanoid"))
+				charOffset = -hrp.Size.Y/2 - hum.HipHeight + 0.5;
 			const origin = hrp.Position.add(new Vector3(0, charOffset, 0));
 			const castInfo = this.castRay(origin, this.groupParts);
 			if (castInfo && castInfo.hitPart)
