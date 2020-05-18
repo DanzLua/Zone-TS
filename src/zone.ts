@@ -50,7 +50,7 @@ export class Zone{
 
 	constructor(group: Instance, additionalHeight: number|undefined=undefined){
 		this.group = group;
-		this.additionalHeight = additionalHeight || 0;
+		this.additionalHeight = (additionalHeight!==undefined)?additionalHeight:0;
 		this.regionHeight = 20;
 		this.displayBoundParts = false;
 		this.groupParts = [];
@@ -191,7 +191,7 @@ export class Zone{
 				},
 				parse: function(valuesToParse: number[]){
 					for (const [i, v] of valuesToParse.entries()) {
-						const currentValue = this.Values[i] || v;
+						const currentValue = (this.Values[i]!==undefined)?this.Values[i]:v;
 						if (this.parseCheck(v, currentValue)){
 							this.Values[i] = v;
 						}
@@ -204,7 +204,7 @@ export class Zone{
 				},
 				parse: function(valuesToParse: number[]){
 					for (const [i, v] of valuesToParse.entries()) {
-						const currentValue = this.Values[i] || v;
+						const currentValue = (this.Values[i]!==undefined)?this.Values[i]:v;
 						if (this.parseCheck(v, currentValue)){
 							this.Values[i] = v;
 						}
@@ -354,7 +354,7 @@ export class Zone{
 			const randomWeight = math.random();
 			let totalWeight = 0.01;
 			for(const[,details] of this.clusters.entries()){
-				if (details.weight){
+				if (details.weight!==undefined){
 					totalWeight += details.weight;
 					if (totalWeight >= randomWeight){
 						parts = details.parts;
