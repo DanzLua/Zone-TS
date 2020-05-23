@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/zone-plus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A port of ForeverHD's Zone+ module.",
   "main": "out/init.lua",
   "scripts": {

@@ -164,8 +164,8 @@ export class Zone{
 		if (!this.displayBoundParts){
 			this.displayBoundParts = true;
 			const boundParts: boundPartsInterface = {BoundMin: this.boundMin, BoundMax: this.boundMax};
-			createBoundPart(this, boundParts.BoundMin, "BoundMin");
-			createBoundPart(this, boundParts.BoundMax, "BoundMax");
+			createBoundPart(this, boundParts.BoundMin, "BoundMin").Parent = this.group;
+			createBoundPart(this, boundParts.BoundMax, "BoundMax").Parent = this.group;
 		}
 	}
 
@@ -238,10 +238,6 @@ export class Zone{
 		}
 		const boundMin = new Vector3(bounds.Min.Values[0],bounds.Min.Values[1],bounds.Min.Values[2]);
 		const boundMax = new Vector3(bounds.Max.Values[0],bounds.Max.Values[1],bounds.Max.Values[2]).add(new Vector3(0,this.additionalHeight,0));
-		//if (this.displayBoundParts === true){
-		//	createBoundPart(this, boundMin, "BoundMin").Parent = this.group;
-		//	createBoundPart(this, boundMax, "BoundMax").Parent = this.group;
-		//}
 		const region = new Region3(boundMin, boundMax);
 		return {region, boundMin, boundMax};
 	}
@@ -276,8 +272,7 @@ export class Zone{
 		return playersInRegion;
 	}
 
-	getPlayer(player: Player){
-		const char = player.Character;
+	getCharacter(char: Model){
 		const hrp = char && char.FindFirstChild("HumanoidRootPart");
 		if (hrp && hrp.IsA("BasePart")){
 			let charOffset = hrp.Size.Y * -1.4;
@@ -289,13 +284,13 @@ export class Zone{
 			if (castInfo && castInfo.hitPart)
 				return castInfo.hitPart;
 			return false;
-
-			/*const lookDirection = origin.add(new Vector3(0, -1, 0));
-			const ray = new Ray(origin, (lookDirection.sub(origin)).Unit.mul(this.regionHeight));
-			const groupPart = Workspace.FindPartOnRayWithWhitelist(ray, this.groupParts);
-			if (groupPart[0])
-				return true;*/
 		}
+	}
+
+	getPlayer(player: Player){
+		const char = player.Character;
+		if (char)
+			return this.getCharacter(char);
 		return false;
 	}
 
